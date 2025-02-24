@@ -13,8 +13,12 @@ readme = "README.md"
 
 [dependencies]
 bdk_chain = { path = "../chain", version = "0.16.0" }
-electrum-client = { version = "0.20" }
-#rustls = { version = "=0.21.1", optional = true, features = ["dangerous_configuration"] }
+electrum-client = { version = "0.21", features = [ "proxy" ], default-features = false }
 
 [dev-dependencies]
 bdk_testenv = { path = "../testenv", default-features = false }
+
+[features]
+default = ["use-rustls"]
+use-rustls = ["electrum-client/use-rustls"]
+use-rustls-ring = ["electrum-client/use-rustls-ring"]
